@@ -1,0 +1,431 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie Restaurant</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #fff8f0;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: #e85d04;
+            color: white;
+            padding: 15px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav h1 {
+            font-size: 26px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 400px;
+            background:
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url("https://images.unsplash.com/photo-1504674900247-0877df9cc836")
+                center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 30px;
+        }
+
+        .hero h2 {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        .restaurant-info {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        /* Main Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #d94801;
+            font-size: 30px;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .category {
+            background: white;
+            border: 2px solid #e85d04;
+            color: #e85d04;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .category:hover {
+            background: #e85d04;
+            color: white;
+        }
+
+        /* Food Cards */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+            transition: 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .food-content {
+            padding: 18px;
+        }
+
+        .food-content h3 {
+            color: #d94801;
+            margin-bottom: 8px;
+        }
+
+        .food-content p {
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .order-btn {
+            background: #e85d04;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            float: right;
+            font-weight: bold;
+        }
+
+        .order-btn:hover {
+            background: #c24100;
+        }
+
+        /* Special Offer */
+        .offer {
+            margin: 50px 0;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(135deg, #ff7b00, #d62828);
+        }
+
+        .offer h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .offer p {
+            font-size: 18px;
+        }
+
+        /* Reviews */
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .review-card h3 {
+            color: #d94801;
+            margin-bottom: 8px;
+        }
+
+        .stars {
+            color: #ffb703;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 92%;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1000px) {
+            .food-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reviews {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <h1>🍴 Foodie</h1>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#offers">Offers</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+        </ul>
+    </nav>
+
+    <!-- Restaurant Hero -->
+    <section class="hero" id="home">
+        <div>
+            <h2>Welcome to Foodie Restaurant</h2>
+            <p>Delicious food delivered to your doorstep!</p>
+
+            <div class="restaurant-info">
+                ⭐ 4.8 Rating &nbsp; | &nbsp;
+                🕒 10:00 AM - 11:00 PM &nbsp; | &nbsp;
+                🚚 Free Delivery
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="container" id="menu">
+
+        <h2 class="section-title">Our Menu</h2>
+
+        <!-- Categories -->
+        <div class="categories">
+            <div class="category">🍕 Pizza</div>
+            <div class="category">🍔 Burgers</div>
+            <div class="category">🍗 Chicken</div>
+            <div class="category">🍝 Pasta</div>
+            <div class="category">🍰 Desserts</div>
+            <div class="category">🥤 Drinks</div>
+        </div>
+
+        <!-- Food Cards -->
+        <div class="food-grid">
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38">
+                <div class="food-content">
+                    <h3>Cheese Pizza</h3>
+                    <p>Fresh pizza with delicious cheese and vegetables.</p>
+                    <span class="price">₹249</span>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+                <div class="food-content">
+                    <h3>Classic Burger</h3>
+                    <p>Juicy burger with fresh vegetables and special sauce.</p>
+                    <span class="price">₹199</span>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad">
+                <div class="food-content">
+                    <h3>Creamy Pasta</h3>
+                    <p>Delicious creamy pasta prepared with fresh ingredients.</p>
+                    <span class="price">₹229</span>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1598515214211-89d3c73ae83b">
+                <div class="food-content">
+                    <h3>Grilled Chicken</h3>
+                    <p>Soft and tasty grilled chicken with special spices.</p>
+                    <span class="price">₹299</span>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307">
+                <div class="food-content">
+                    <h3>Chocolate Dessert</h3>
+                    <p>Sweet and delicious chocolate dessert for everyone.</p>
+                    <span class="price">₹149</span>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e">
+                <div class="food-content">
+                    <h3>Fresh Juice</h3>
+                    <p>Fresh and refreshing fruit juice served chilled.</p>
+                    <span class="price">₹99</span>
+                    <button class="order-btn">Order Now</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="container" id="offers">
+
+        <div class="offer">
+            <h2>🔥 Special Offer!</h2>
+            <p>Get 30% OFF on your first order.</p>
+            <p>Use Coupon Code: <strong>FOOD30</strong></p>
+        </div>
+
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="container" id="reviews">
+
+        <h2 class="section-title">Customer Reviews</h2>
+
+        <div class="reviews">
+
+            <div class="review-card">
+                <h3>Rahul</h3>
+                <div class="stars">★★★★★</div>
+                <p>"The food was very tasty and delivery was fast. Highly recommended!"</p>
+            </div>
+
+            <div class="review-card">
+                <h3>Priya</h3>
+                <div class="stars">★★★★★</div>
+                <p>"Amazing pizza and excellent service. I will definitely order again."</p>
+            </div>
+
+            <div class="review-card">
+                <h3>Arjun</h3>
+                <div class="stars">★★★★☆</div>
+                <p>"Good quality food, reasonable prices and great packaging."</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Foodie Restaurant | All Rights Reserved</p>
+        <p>📞 Contact: 98765 43210 | 📧 foodie@example.com</p>
+    </footer>
+
+</body>
+</html>
+```
